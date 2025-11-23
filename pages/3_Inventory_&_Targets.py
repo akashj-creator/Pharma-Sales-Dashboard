@@ -26,16 +26,16 @@ st.title("📦 Inventory & Targets")
 st.header("Inventory Status")
 
 # Low Stock Alert
-low_stock = inventory_df[inventory_df['QuantityAvailable'] < inventory_df['ReorderLevel']]
+low_stock = inventory_df[inventory_df['StockLevel'] < inventory_df['ReorderLevel']]
 
 if not low_stock.empty:
     st.error(f"⚠️ Alert: {len(low_stock)} products are below reorder level!")
-    st.dataframe(low_stock[['ProductName', 'QuantityAvailable', 'ReorderLevel', 'TherapeuticArea']], use_container_width=True)
+    st.dataframe(low_stock[['ProductName', 'StockLevel', 'ReorderLevel', 'TherapeuticClass']], use_container_width=True)
 else:
     st.success("✅ All stock levels are healthy.")
 
 # Stock Distribution
-fig_stock = px.histogram(inventory_df, x='QuantityAvailable', nbins=20, title="Stock Level Distribution")
+fig_stock = px.histogram(inventory_df, x='StockLevel', nbins=20, title="Stock Level Distribution")
 st.plotly_chart(fig_stock, use_container_width=True)
 
 st.markdown("---")

@@ -62,11 +62,11 @@ def process_data(dfs):
     
     # --- 4. Clean Inventory ---
     # Ensure numeric
-    inventory['QuantityAvailable'] = pd.to_numeric(inventory['QuantityAvailable'], errors='coerce').fillna(0)
+    inventory['StockLevel'] = pd.to_numeric(inventory['StockLevel'], errors='coerce').fillna(0)
     inventory['ReorderLevel'] = pd.to_numeric(inventory['ReorderLevel'], errors='coerce').fillna(0)
     
     # Merge Inventory with Product Name for better display
-    inventory_enriched = inventory.merge(products[['ProductID', 'ProductName', 'TherapeuticArea']], on='ProductID', how='left')
+    inventory_enriched = inventory.merge(products[['ProductID', 'ProductName', 'TherapeuticClass']], on='ProductID', how='left')
 
     return {
         "sales_enriched": sales_enriched,

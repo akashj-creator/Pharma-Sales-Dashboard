@@ -31,9 +31,9 @@ if selected_region != "All":
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("Sales by Therapeutic Area")
-    area_sales = sales_df.groupby('TherapeuticArea')['InvoiceAmount'].sum().reset_index()
-    fig_donut = px.pie(area_sales, values='InvoiceAmount', names='TherapeuticArea', hole=0.4, title="Revenue Share by Area")
+    st.subheader("Sales by Therapeutic Class")
+    area_sales = sales_df.groupby('TherapeuticClass')['InvoiceAmount'].sum().reset_index()
+    fig_donut = px.pie(area_sales, values='InvoiceAmount', names='TherapeuticClass', hole=0.4, title="Revenue Share by Class")
     st.plotly_chart(fig_donut, use_container_width=True)
 
 with col2:
